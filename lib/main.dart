@@ -1,9 +1,18 @@
+import 'package:drag_drop/controllers/guess_controller.dart';
 import 'package:drag_drop/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => GuessController(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
