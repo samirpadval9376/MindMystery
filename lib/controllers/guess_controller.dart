@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:drag_drop/utils/animal_utils.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../utils/image_utils.dart';
+
 class GuessController extends ChangeNotifier {
   List animalName = [];
   Random random = Random();
@@ -36,15 +38,20 @@ class GuessController extends ChangeNotifier {
   }
 
   changeName({required int index}) {
-    animalName[nameIndex] = String.fromCharCode(index + 97);
-    print("==============================");
-    print("${animalName[nameIndex]}");
-    print("==============================");
-    if (nameIndex < Animal.animals[i]['name'].length - 1) {
-      nameIndex++;
+    if (Animal.animals[i]['name'][nameIndex] ==
+        String.fromCharCode(index + 97)) {
+      animalName[nameIndex] = String.fromCharCode(index + 97);
+      if (nameIndex < Animal.animals[i]['name'].length - 1) {
+        nameIndex++;
+      } else {
+        isDone = true;
+      }
     } else {
-      isDone = true;
+      chance -= 1;
     }
+    print("==========================");
+    print(nameIndex);
+    print("==========================");
     notifyListeners();
   }
 

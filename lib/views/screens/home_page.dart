@@ -4,9 +4,14 @@ import 'package:drag_drop/utils/image_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +32,10 @@ class HomePage extends StatelessWidget {
         child: Center(
           child: Consumer<GuessController>(builder: (context, provider, child) {
             int i = provider.i;
+            print("=====================================");
+            print("Index: $i");
+            print("=====================================");
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,22 +52,23 @@ class HomePage extends StatelessWidget {
                             width: 80,
                             margin: const EdgeInsets.all(5),
                             color: Colors.grey,
-                            child: provider.animalName[index] != null
+                            child: provider.accepted[index]
                                 ? Image.asset(
-                                    "assets/images/pieces/${provider.animalName[index].toLowerCase()}.png")
+                                    "assets/images/pieces/${Animal.animals[i]['name'][index].toLowerCase()}.png")
                                 : null,
                           );
                         },
                         onWillAccept: (data) {
                           print("=============================");
-                          // print(
-                          // "${Animal.animals[i]['name'][provider.nameIndex]}");
+                          print(
+                              "DATA: ${Animal.animals[i]['name'][index]} & data: $data");
                           print("=============================");
-                          return data ==
-                              Animal.animals[i]['name'][provider.nameIndex];
+                          return data == Animal.animals[i]['name'][index];
                         },
                         onAccept: (data) {
-                          provider.onAccepts(index: index);
+                          setState(() {
+                            provider.accepted[index] = true;
+                          });
                         },
                       ),
                     ),
@@ -77,11 +87,9 @@ class HomePage extends StatelessWidget {
                       children: List.generate(
                         26,
                         (index) => LongPressDraggable(
-                          data: (Animal.animals[i]['name']
-                                      [provider.nameIndex] ==
-                                  String.fromCharCode(index + 97))
-                              ? provider.changeName(index: index)
-                              : null,
+                          data: String.fromCharCode(
+                            index + 97,
+                          ),
                           feedback: Container(
                             height: 80,
                             width: 80,
@@ -100,7 +108,8 @@ class HomePage extends StatelessWidget {
                             color: Colors.grey,
                           ),
                           child: Image.asset(
-                              "assets/images/pieces/${String.fromCharCode(index + 97)}.png"),
+                            "assets/images/pieces/${String.fromCharCode(index + 97)}.png",
+                          ),
                         ),
                       ),
                     ),
