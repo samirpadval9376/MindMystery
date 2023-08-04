@@ -45,12 +45,17 @@ class HomePage extends StatelessWidget {
                             color: Colors.grey,
                             child: provider.animalName[index] != null
                                 ? Image.asset(
-                                    "assets/images/pieces/${Animal.animals[index]['name'].toLowerCase()}.png")
+                                    "assets/images/pieces/${provider.animalName[index].toLowerCase()}.png")
                                 : null,
                           );
                         },
                         onWillAccept: (data) {
-                          return data == Animal.animals[i]['name'];
+                          print("=============================");
+                          // print(
+                          // "${Animal.animals[i]['name'][provider.nameIndex]}");
+                          print("=============================");
+                          return data ==
+                              Animal.animals[i]['name'][provider.nameIndex];
                         },
                         onAccept: (data) {
                           provider.onAccepts(index: index);
@@ -69,37 +74,35 @@ class HomePage extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: imagePath
-                          .map(
-                            (e) => LongPressDraggable(
-                              data: Animal.animals[i]['name'] ==
-                                      String.fromCharCode(
-                                          imagePath.indexOf(e) + 97)
-                                  ? provider.changeName(index: e)(provider
-                                              .nameIndex <
-                                          Animal.animals[i]['name'].length - 1)
-                                      ? provider.nameIndex++
-                                      : provider.isDone = true
-                                  : provider.chance -= 1,
-                              feedback: Container(
-                                height: 80,
-                                width: 80,
-                                margin: const EdgeInsets.all(10),
-                                child: Container(
-                                  margin: const EdgeInsets.all(10),
-                                  child: Image.asset(e),
-                                ),
+                      children: List.generate(
+                        26,
+                        (index) => LongPressDraggable(
+                          data: (Animal.animals[i]['name']
+                                      [provider.nameIndex] ==
+                                  String.fromCharCode(index + 97))
+                              ? provider.changeName(index: index)
+                              : null,
+                          feedback: Container(
+                            height: 80,
+                            width: 80,
+                            margin: const EdgeInsets.all(10),
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              child: Image.asset(
+                                "assets/images/pieces/${String.fromCharCode(index + 97)}.png",
                               ),
-                              childWhenDragging: Container(
-                                height: 60,
-                                width: 60,
-                                margin: const EdgeInsets.all(10),
-                                color: Colors.grey,
-                              ),
-                              child: Image.asset(e),
                             ),
-                          )
-                          .toList(),
+                          ),
+                          childWhenDragging: Container(
+                            height: 60,
+                            width: 60,
+                            margin: const EdgeInsets.all(10),
+                            color: Colors.grey,
+                          ),
+                          child: Image.asset(
+                              "assets/images/pieces/${String.fromCharCode(index + 97)}.png"),
+                        ),
+                      ),
                     ),
                   ),
                 ),

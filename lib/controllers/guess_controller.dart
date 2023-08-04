@@ -40,6 +40,11 @@ class GuessController extends ChangeNotifier {
     print("==============================");
     print("${animalName[nameIndex]}");
     print("==============================");
+    if (nameIndex < Animal.animals[i]['name'].length - 1) {
+      nameIndex++;
+    } else {
+      isDone = true;
+    }
     notifyListeners();
   }
 
