@@ -37,6 +37,14 @@ class GuessController extends ChangeNotifier {
     nameIndex = 0;
   }
 
+  reload({required int index}) {
+    i = random.nextInt(Animal.animals.length);
+    animalName =
+        List.generate(Animal.animals[i]['name'].length, (index) => null);
+    index = 0;
+    notifyListeners();
+  }
+
   changeName({required int index}) {
     if (Animal.animals[i]['name'][nameIndex] ==
         String.fromCharCode(index + 97)) {
