@@ -46,11 +46,10 @@ class GuessController extends ChangeNotifier {
   }
 
   changeName({required int index}) {
-    if (Animal.animals[i]['name'][nameIndex] ==
-        String.fromCharCode(index + 97)) {
-      animalName[nameIndex] = String.fromCharCode(index + 97);
-      if (nameIndex < Animal.animals[i]['name'].length - 1) {
-        nameIndex++;
+    if (Animal.animals[i]['name'][index] == String.fromCharCode(index + 97)) {
+      String.fromCharCode(index + 97);
+      if (index < Animal.animals[i]['name'].length - 1) {
+        index++;
       } else {
         isDone = true;
       }
