@@ -1,10 +1,7 @@
 import 'dart:math';
 
 import 'package:drag_drop/utils/animal_utils.dart';
-import 'package:drag_drop/utils/fruit_utils.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../utils/image_utils.dart';
 
 class AnimalController extends ChangeNotifier {
   Random random = Random();
@@ -27,11 +24,14 @@ class AnimalController extends ChangeNotifier {
       Animal.animals[i]['name'].length,
       (index) => false,
     );
-
-    print("=============================");
-    print("${Animal.animals[i]['name']}");
-    print("=============================");
     nameIndex = 0;
+  }
+
+  isDoneAnimal() {
+    isDone = false;
+    init();
+    score += 10;
+    notifyListeners();
   }
 
   reload() {
@@ -56,9 +56,6 @@ class AnimalController extends ChangeNotifier {
     } else {
       chance -= 1;
     }
-    print("==========================");
-    print(nameIndex);
-    print("==========================");
     notifyListeners();
   }
 

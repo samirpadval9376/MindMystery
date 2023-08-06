@@ -1,8 +1,5 @@
-import 'package:drag_drop/controllers/animal_controller.dart';
-import 'package:drag_drop/utils/animal_utils.dart';
 import 'package:drag_drop/utils/my_page_route_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

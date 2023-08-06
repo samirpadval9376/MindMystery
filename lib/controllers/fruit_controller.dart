@@ -29,7 +29,7 @@ class FruitController extends ChangeNotifier {
     init();
     isFruit = false;
     if (scoreFruit >= 5) {
-      scoreFruit -= 5;
+      scoreFruit - 5;
     } else {
       scoreFruit = 0;
     }
@@ -50,6 +50,13 @@ class FruitController extends ChangeNotifier {
         chanceFruit--;
       }
     }
+    notifyListeners();
+  }
+
+  isDone() {
+    isFruit = false;
+    init();
+    scoreFruit += 10;
     notifyListeners();
   }
 

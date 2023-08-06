@@ -1,4 +1,3 @@
-import 'package:drag_drop/controllers/animal_controller.dart';
 import 'package:drag_drop/utils/fruit_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -156,6 +155,28 @@ class FruitPage extends StatelessWidget {
                                     "assets/images/pieces/${String.fromCharCode(index + 97)}.png",
                                   ),
                                 ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 60,
+                          width: 200,
+                          child: ElevatedButton(
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                Colors.amber,
+                              ),
+                            ),
+                            onPressed: () {
+                              provider.isDone();
+                            },
+                            child: const Text(
+                              "Next",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
                           ),
