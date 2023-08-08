@@ -58,7 +58,7 @@ class FruitPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: s.height * 0.02,
+                          height: s.height * 0.04,
                         ),
                         SizedBox(
                           height: s.height * 0.4,
@@ -119,6 +119,9 @@ class FruitPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: s.height * 0.05,
+                        ),
                         Container(
                           height: 100,
                           padding: const EdgeInsets.all(10),
@@ -160,23 +163,30 @@ class FruitPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
+                          height: s.height * 0.02,
+                        ),
+                        SizedBox(
                           height: 60,
                           width: 200,
-                          child: ElevatedButton(
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                Colors.amber,
+                          child: Visibility(
+                            visible: provider.acceptedFruit
+                                .every((element) => element),
+                            child: ElevatedButton(
+                              style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                  Colors.amber,
+                                ),
                               ),
-                            ),
-                            onPressed: () {
-                              provider.isDone();
-                            },
-                            child: const Text(
-                              "Next",
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                              onPressed: () {
+                                provider.isDone();
+                              },
+                              child: const Text(
+                                "Next",
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),

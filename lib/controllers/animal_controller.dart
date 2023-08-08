@@ -45,21 +45,24 @@ class AnimalController extends ChangeNotifier {
     notifyListeners();
   }
 
-  changeName({required int index}) {
-    if (Animal.animals[i]['name'][index] == String.fromCharCode(index + 97)) {
-      String.fromCharCode(index + 97);
+  changeAnimal({required int index, required Object? data}) {
+    if (data == Animal.animals[i]['name'][index]) {
+      accepted[index] = true;
       if (index < Animal.animals[i]['name'].length - 1) {
+        nameIndex++;
         index++;
       } else {
         isDone = true;
       }
     } else {
-      chance -= 1;
+      if (accepted[index] == false) {
+        chance--;
+      }
     }
     notifyListeners();
   }
 
-  onAccepts({required int index}) {
+  onAccept({required int index}) {
     accepted[index] = true;
     notifyListeners();
   }

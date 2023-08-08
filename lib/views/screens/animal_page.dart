@@ -117,34 +117,14 @@ class _AnimalPage extends State<AnimalPage> {
                                   );
                                 },
                                 onWillAccept: (data) {
-                                  if (data ==
-                                      Animal.animals[i]['name'][index]) {
-                                    setState(() {
-                                      provider.accepted[index] = true;
-                                      if (index <
-                                          Animal.animals[i]['name'].length -
-                                              1) {
-                                        provider.nameIndex++;
-                                        index++;
-                                      } else {
-                                        provider.isDone = true;
-                                      }
-                                    });
-                                  } else {
-                                    setState(() {
-                                      if (provider.accepted[index] == false) {
-                                        provider.chance--;
-                                      }
-                                    });
-                                  }
+                                  provider.changeAnimal(
+                                      index: index, data: data);
 
                                   return (data ==
                                       Animal.animals[i]['name'][index]);
                                 },
                                 onAccept: (data) {
-                                  setState(() {
-                                    provider.accepted[index] = true;
-                                  });
+                                  provider.onAccept(index: index);
                                 },
                               ),
                             ),
@@ -229,12 +209,64 @@ class _AnimalPage extends State<AnimalPage> {
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Game Over !!"),
-                        ElevatedButton(
-                          onPressed: () {
-                            provider.reload();
-                          },
-                          child: const Text("RESTART"),
+                        const Text(
+                          "Game Over !!",
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: s.height * 0.02,
+                        ),
+                        Text(
+                          "It was a :- ${Animal.animals[i]['name']}",
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: s.height * 0.02,
+                        ),
+                        Container(
+                          height: s.height * 0.4,
+                          width: s.width,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                Animal.animals[i]['image'],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: s.height * 0.04,
+                        ),
+                        SizedBox(
+                          height: 60,
+                          width: 200,
+                          child: ElevatedButton(
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                Colors.amber,
+                              ),
+                            ),
+                            onPressed: () {
+                              provider.reload();
+                            },
+                            child: const Text(
+                              "RESTART",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     );
