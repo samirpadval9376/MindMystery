@@ -32,5 +32,35 @@ class Animal {
       'name': "rhino",
       'chance': 3,
     },
+    {
+      'id': 6,
+      'image': "${animalPath}cow.png",
+      'name': "cow",
+      'chance': 3,
+    },
+    {
+      'id': 7,
+      'image': "${animalPath}dog.png",
+      'name': "dog",
+      'chance': 3,
+    },
+    {
+      'id': 8,
+      'image': "${animalPath}fox.png",
+      'name': "fox",
+      'chance': 3,
+    },
+    {
+      'id': 9,
+      'image': "${animalPath}girraf.png",
+      'name': "giraffe",
+      'chance': 3,
+    },
+    {
+      'id': 10,
+      'image': "${animalPath}turtle.png",
+      'name': "turtle",
+      'chance': 3,
+    },
   ];
 }
